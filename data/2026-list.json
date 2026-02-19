@@ -5,7 +5,7 @@
     "company": "TechCorp Global",
     "sector": "Technology",
     "expertise": ["AI", "Transformation"],
-    "photo": "https://via.placeholder.com/300x300",
+    "photo": "assets/images/Alex.jpg",
     "linkedIn": "#"
   },
   {
@@ -14,7 +14,7 @@
     "company": "Energy Solutions PLC",
     "sector": "Energy",
     "expertise": ["ESG", "Finance"],
-    "photo": "https://via.placeholder.com/300x300",
+    "photo": ""assets/images/Lauren.jpg",
     "linkedIn": "#"
   }
 ]
