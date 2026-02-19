@@ -61,15 +61,17 @@ input, select {
 .photo-container { position: relative; width: 100%; height: 300px; }
 .photo-container img { width: 100%; height: 100%; object-fit: cover; }
 
-/* The Badge Overlay */
+/* The Badge Overlay - Enhanced Size */
 .badge-overlay {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 60px;
-    height: 60px;
+    bottom: 15px;      /* Lifted slightly from the bottom */
+    right: 15px;       /* Moved slightly from the edge */
+    width: 95px;       /* Increased size from 60px */
+    height: 95px;      /* Increased size from 60px */
     background: url('../../badges/2026-badge.png') no-repeat center center;
     background-size: contain;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Adds a professional "pop" */
+    z-index: 10;
 }
 
 .info { padding: 20px; text-align: center; }
