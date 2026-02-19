@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Alexandra Smith",
+    "role": "Chief Digital Officer",
+    "company": "TechCorp Global",
+    "sector": "Technology",
+    "expertise": ["AI", "Transformation"],
+    "photo": "https://via.placeholder.com/300x300",
+    "linkedIn": "#"
+  },
+  {
+    "name": "Lauren Reeve",
+    "role": "CFO",
+    "company": "Energy Solutions PLC",
+    "sector": "Energy",
+    "expertise": ["ESG", "Finance"],
+    "photo": "https://via.placeholder.com/300x300",
+    "linkedIn": "#"
+  }
+]
