@@ -3,126 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidate Directory | Board Ready</title>
-    
+    <title>Showcase | Board Ready</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <nav class="nav">
+        <a href="index.html">← Back to Main</a>
+        <img src="badges/2026-badge.png" style="height: 35px;">
+    </nav>
 
-<nav class="nav">
-    <a href="index.html">← Back to Main</a>
-    <img src="badges/2026-badge.png" style="height: 40px;" alt="Board Ready Logo">
-</nav>
-
-<div class="header-section">
-    <h2>The 2026 Showcase</h2>
-    <div class="search-controls">
-        <input type="text" id="searchInput" onkeyup="runFilters()" placeholder="Search by name, title, or biography keywords...">
-        
-        <select id="tagSelect" onchange="runFilters()">
-            <option value="all">All Specialties</option>
-            <option value="ESG">ESG</option>
-            <option value="Finance">Finance</option>
-            <option value="AI">AI</option>
-            <option value="Technology">Technology</option>
-            <option value="Governance">Governance</option>
-        </select>
-    </div>
-</div>
-
-<div id="noResults">No board-ready candidates match your search criteria.</div>
-
-<div class="grid" id="nomineeGrid">
-    
-    <div class="card nominee-card" data-tags="ESG AI Technology">
-        <div class="img-container">
-            <img src="badges/2026-badge.png" class="card-badge">
-            <img src="assets/images/Lauren.jpg" class="photo" alt="Lauren D'Souza">
+    <div class="header-section">
+        <h2>The 2026 Showcase</h2>
+        <div class="search-controls">
+            <input type="text" id="searchInput" onkeyup="runFilters()" placeholder="Search names, titles, or bios...">
+            <select id="tagSelect" onchange="runFilters()">
+                <option value="all">All Specialties</option>
+                <option value="ESG">ESG</option>
+                <option value="Finance">Finance</option>
+                <option value="Technology">Technology</option>
+            </select>
         </div>
-        <div class="details">
-            <h3>Lauren D’Souza</h3>
-            <span class="title-line">Chief Operating Officer</span>
-            <div class="company-line">Global Tech Solutions PLC</div>
-            
-            <div class="bio-container">
-                <details>
-                    <summary>Executive Biography</summary>
-                    <div class="bio-text">
-                        Lauren is a results-driven executive with over 20 years of experience in scaling global operations. She currently oversees strategic AI integration at Global Tech, ensuring ethical governance and ESG compliance across four continents.
-                    </div>
-                </details>
-            </div>
+    </div>
 
-            <div class="tag-list">
-                <span class="tag-pill">ESG</span>
-                <span class="tag-pill">AI</span>
-                <span class="tag-pill">Technology</span>
+    <div id="noResults" style="display:none; text-align:center; padding:50px;">No candidates match your search.</div>
+
+    <div class="grid" id="nomineeGrid">
+        <div class="card nominee-card" data-tags="ESG Technology">
+            <div class="img-container">
+                <img src="badges/2026-badge.png" class="card-badge">
+                <img src="assets/images/Lauren.jpg" class="photo" alt="Lauren">
+            </div>
+            <div class="details">
+                <h3>Lauren D’Souza</h3>
+                <span class="title-line">Chief Operating Officer</span>
+                <div class="company-line">Global Tech Solutions PLC</div>
+                <div class="bio-container">
+                    <details>
+                        <summary>Executive Biography</summary>
+                        <div class="bio-text">Expert in scaling AI and ESG operations across global markets.</div>
+                    </details>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="card nominee-card" data-tags="Finance Technology Governance">
-        <div class="img-container">
-            <img src="badges/2026-badge.png" class="card-badge">
-            <img src="assets/images/Alex.jpg" class="photo" alt="Alexandra Sterling">
-        </div>
-        <div class="details">
-            <h3>Alexandra Sterling</h3>
-            <span class="title-line">Non-Executive Director</span>
-            <div class="company-line">Financier Group LTD</div>
-
-            <div class="bio-container">
-                <details>
-                    <summary>Executive Biography</summary>
-                    <div class="bio-text">
-                        Alexandra is a specialist in financial oversight and risk management. With a background in top-tier audit firms, she advises boards on digital transformation in the fintech sector and robust corporate governance.
-                    </div>
-                </details>
-            </div>
-
-            <div class="tag-list">
-                <span class="tag-pill">Finance</span>
-                <span class="tag-pill">Technology</span>
-                <span class="tag-pill">Governance</span>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<script>
-function runFilters() {
-    let searchText = document.getElementById('searchInput').value.toLowerCase();
-    let selectedTag = document.getElementById('tagSelect').value;
-    let cards = document.getElementsByClassName('nominee-card');
-    let visibleCount = 0;
-
-    for (let card of cards) {
-        let name = card.querySelector('h3').innerText.toLowerCase();
-        let title = card.querySelector('.title-line').innerText.toLowerCase();
-        let company = card.querySelector('.company-line').innerText.toLowerCase();
-        let bio = card.querySelector('.bio-text').innerText.toLowerCase();
-        let tags = card.getAttribute('data-tags');
-
-        let matchesSearch = name.includes(searchText) || 
-                            title.includes(searchText) || 
-                            company.includes(searchText) || 
-                            bio.includes(searchText);
-                            
-        let matchesTag = (selectedTag === 'all' || tags.includes(selectedTag));
-
-        if (matchesSearch && matchesTag) {
-            card.style.display = "block";
-            visibleCount++;
-        } else {
-            card.style.display = "none";
+    <script>
+        function runFilters() {
+            let searchText = document.getElementById('searchInput').value.toLowerCase();
+            let selectedTag = document.getElementById('tagSelect').value;
+            let cards = document.getElementsByClassName('nominee-card');
+            let visibleCount = 0;
+            for (let card of cards) {
+                let text = card.innerText.toLowerCase();
+                let tags = card.getAttribute('data-tags');
+                let matchesSearch = text.includes(searchText);
+                let matchesTag = (selectedTag === 'all' || tags.includes(selectedTag));
+                if (matchesSearch && matchesTag) { card.style.display = "block"; visibleCount++; }
+                else { card.style.display = "none"; }
+            }
+            document.getElementById('noResults').style.display = (visibleCount === 0) ? "block" : "none";
         }
-    }
-    document.getElementById('noResults').style.display = (visibleCount === 0) ? "block" : "none";
-}
-</script>
-
+    </script>
 </body>
 </html>
