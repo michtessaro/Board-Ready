@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Board Ready 100 | 2026 Directory</title>
+    <title>2026 Directory | Board Ready 100</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="directory-page">
     <header>
         <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">← Back to Home</a>
+            </nav>
             <h1>BOARD READY 100</h1>
-            <p class="tagline">The Definitive Guide to Board-Ready Female Talent for the FTSE 350</p>
+            <p class="tagline">The 2026 Directory of FTSE 350 Candidates</p>
             
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search by name, company, or expertise (e.g. AI, ESG)...">
+                <input type="text" id="searchInput" placeholder="Search by name, role, or skill (e.g., Audit, ESG, AI)...">
                 <select id="sectorFilter">
                     <option value="">All Sectors</option>
                     <option value="Technology">Technology</option>
                     <option value="Energy">Energy</option>
                     <option value="Finance">Finance</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Healthcare">Healthcare</option>
                 </select>
             </div>
         </div>
@@ -28,6 +33,12 @@
         <div id="nomineeGrid" class="grid">
             </div>
     </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Board Ready 100. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script src="assets/js/app.js"></script>
 </body>
