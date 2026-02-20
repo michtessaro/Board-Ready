@@ -3,91 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showcase Directory | Board Ready</title>
+    <title>Candidate Directory | Board Ready</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --navy: #0a192f; --gold: #d4af37; --white: #ffffff; --off-white: #f8f9fa; }
-        body { font-family: 'Montserrat', sans-serif; background: var(--off-white); margin: 0; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--off-white); margin: 0; padding: 0; }
         
         .nav { background: var(--navy); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
         .nav a { color: var(--gold); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; }
 
-        .header-section { padding: 60px 5%; text-align: center; background: white; border-bottom: 1px solid #eee; }
-        .header-section h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--navy); margin: 0; }
+        .header-section { padding: 40px 5%; text-align: center; background: white; border-bottom: 1px solid #eee; }
+        .header-section h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--navy); margin-bottom: 20px; }
         
-        .search-box { margin-top: 30px; }
-        #searchInput { width: 100%; max-width: 500px; padding: 15px; border: 1px solid #ddd; border-radius: 30px; font-size: 1rem; outline: none; }
+        /* Search and Filter UI */
+        .controls { max-width: 800px; margin: 0 auto; }
+        #searchInput { width: 100%; padding: 12px 20px; border: 1px solid #ddd; border-radius: 25px; margin-bottom: 20px; outline: none; font-family: 'Montserrat'; }
+        
+        .filter-container { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .filter-btn { 
+            padding: 8px 18px; border: 1px solid var(--navy); background: transparent; 
+            color: var(--navy); cursor: pointer; border-radius: 20px; font-weight: 600; 
+            font-size: 0.75rem; transition: 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover { background: var(--navy); color: white; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; padding: 60px 5%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; padding: 50px 5% 100px; }
         
-        /* Profile Card with Badge Overlay */
-        .card { background: white; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.05); transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); }
-        
-        .img-container { position: relative; width: 100%; height: 400px; overflow: hidden; }
+        /* Card Structure */
+        .card { background: white; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.05); display: block; }
+        .img-container { position: relative; width: 100%; height: 420px; overflow: hidden; }
         .img-container img.photo { width: 100%; height: 100%; object-fit: cover; }
         
-        /* The floating badge */
-        .card-badge { 
-            position: absolute; 
-            top: 15px; 
-            right: 15px; 
-            width: 70px; 
-            z-index: 10; 
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
-        }
+        /* Badge Overlay */
+        .card-badge { position: absolute; top: 15px; right: 15px; width: 75px; z-index: 10; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2)); }
 
         .details { padding: 25px; border-bottom: 4px solid var(--gold); }
         .details h3 { font-family: 'Playfair Display', serif; margin: 0; font-size: 1.6rem; color: var(--navy); }
-        .details span { color: var(--gold); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; font-weight: 600; display: block; margin-top: 5px; }
+        .title-line { color: var(--gold); font-weight: 600; font-size: 0.85rem; margin: 5px 0; display: block; text-transform: uppercase; }
+        .company-line { color: #555; font-size: 0.95rem; margin-bottom: 15px; }
+        
+        .tag-pill { 
+            display: inline-block; background: #f0f0f0; color: #444; padding: 5px 12px; 
+            font-size: 0.7rem; border-radius: 4px; margin-right: 5px; margin-top: 5px; font-weight: 600;
+        }
     </style>
 </head>
 <body>
 
 <nav class="nav">
     <a href="index.html">← Back to Main</a>
-    <img src="badges/2026-badge.png" style="height: 40px;" alt="Logo">
+    <img src="badges/2026-badge.png" style="height: 40px;">
 </nav>
 
 <div class="header-section">
-    <h2>The 2026 Showcase</h2>
-    <div class="search-box">
-        <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search nominees by name...">
+    <div class="controls">
+        <h2>The 2026 Showcase</h2>
+        <input type="text" id="searchInput" onkeyup="filterProfiles()" placeholder="Search by name, title, or company...">
+        
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="setCategory('all', this)">All</button>
+            <button class="filter-btn" onclick="setCategory('ESG', this)">ESG</button>
+            <button class="filter-btn" onclick="setCategory('Finance', this)">Finance</button>
+            <button class="filter-btn" onclick="setCategory('AI', this)">AI</button>
+            <button class="filter-btn" onclick="setCategory('Technology', this)">Technology</button>
+        </div>
     </div>
 </div>
 
 <div class="grid" id="nomineeGrid">
-    <div class="card">
+    <div class="card nominee-card" data-tags="ESG AI Technology">
         <div class="img-container">
-            <img src="badges/2026-badge.png" class="card-badge" alt="Badge">
+            <img src="badges/2026-badge.png" class="card-badge">
             <img src="assets/images/Lauren.jpg" class="photo" alt="Lauren">
         </div>
         <div class="details">
-            <h3>Lauren</h3>
-            <span>Featured Nominee</span>
+            <h3>Lauren [Full Name]</h3>
+            <span class="title-line">Strategic Director</span>
+            <div class="company-line">[Company Name]</div>
+            <div class="tag-list">
+                <span class="tag-pill">ESG</span>
+                <span class="tag-pill">AI</span>
+                <span class="tag-pill">Technology</span>
+            </div>
         </div>
     </div>
 
-    <div class="card">
+    <div class="card nominee-card" data-tags="Finance Technology">
         <div class="img-container">
-            <img src="badges/2026-badge.png" class="card-badge" alt="Badge">
-            <img src="assets/images/Alex.jpg" class="photo" alt="Alex">
+            <img src="badges/2026-badge.png" class="card-badge">
+            <img src="assets/images/Alex.jpg" class="photo" alt="Alexandra">
         </div>
         <div class="details">
-            <h3>Alex</h3>
-            <span>Featured Nominee</span>
+            <h3>Alexandra [Full Name]</h3>
+            <span class="title-line">Non-Executive Director</span>
+            <div class="company-line">[Company Name]</div>
+            <div class="tag-list">
+                <span class="tag-pill">Finance</span>
+                <span class="tag-pill">Technology</span>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-function searchFunction() {
-    var input = document.getElementById("searchInput").value.toUpperCase();
-    var grid = document.getElementById("nomineeGrid");
-    var cards = grid.getElementsByClassName("card");
-    for (var i = 0; i < cards.length; i++) {
-        var name = cards[i].getElementsByTagName("h3")[0].innerText;
-        cards[i].style.display = name.toUpperCase().indexOf(input) > -1 ? "" : "none";
+let currentCategory = 'all';
+
+function setCategory(cat, btn) {
+    currentCategory = cat;
+    // Update active button
+    let btns = document.getElementsByClassName("filter-btn");
+    for (let b of btns) b.classList.remove("active");
+    btn.classList.add("active");
+    filterProfiles();
+}
+
+function filterProfiles() {
+    let searchText = document.getElementById('searchInput').value.toLowerCase();
+    let cards = document.getElementsByClassName('nominee-card');
+
+    for (let card of cards) {
+        let name = card.querySelector('h3').innerText.toLowerCase();
+        let title = card.querySelector('.title-line').innerText.toLowerCase();
+        let company = card.querySelector('.company-line').innerText.toLowerCase();
+        let tags = card.getAttribute('data-tags');
+
+        let matchesSearch = name.includes(searchText) || title.includes(searchText) || company.includes(searchText);
+        let matchesCategory = (currentCategory === 'all' || tags.includes(currentCategory));
+
+        if (matchesSearch && matchesCategory) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
     }
 }
 </script>
