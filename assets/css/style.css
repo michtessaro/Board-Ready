@@ -1,99 +1,85 @@
-/* 1. Global Styles & Typography */
+/* --- Executive Showcase Styles --- */
+
 :root {
-  --executive-navy: #0a192f;
-  --gold-accent: #d4af37;
-  --off-white: #fdfcf8;
-  --charcoal: #333333;
+  --navy: #0a192f;
+  --gold: #d4af37;
+  --white: #ffffff;
+  --off-white: #f8f9fa;
 }
 
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif; /* Modern, professional sans-serif */
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: var(--off-white);
-  color: var(--charcoal);
 }
 
-h1, h2 {
-  font-family: 'Playfair Display', serif; /* Elegant serif for headings */
-}
-
-/* 2. Hero Section Container */
-.hero-showcase {
-  position: relative;
-  height: 80vh; /* Takes up 80% of the screen height */
+/* Hero Section Container */
+.hero-container {
   display: flex;
-  align-items: center;
-  background-color: var(--executive-navy);
+  height: 85vh; /* Height of the header section */
+  background-color: var(--navy);
+  color: var(--white);
   overflow: hidden;
 }
 
-/* 3. The Boardroom Background Photo */
-.image-container {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 60%; /* Occupies the right side */
-  height: 100%;
-}
-
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Fades the left edge of the photo into the navy background */
-  mask-image: linear-gradient(to left, rgba(0,0,0,1) 70%, rgba(0,0,0,0));
-}
-
-/* 4. Text & Badge Content Overlay */
-.content-overlay {
-  position: relative;
+/* Left Side: Content */
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5%;
   z-index: 2;
-  padding-left: 10%;
-  width: 40%;
-  color: white;
 }
 
-/* The "Fake" Transparency Fix for the Badge */
-.badge-seal {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%; /* Force the JPEG into a circle */
-  border: 2px solid var(--gold-accent);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Adds depth */
-  margin-bottom: 2rem;
-  object-fit: cover;
+.hero-badge {
+  width: 140px; /* Adjust size as needed */
+  margin-bottom: 20px;
 }
 
-h1 {
-  font-size: 3.5rem;
+.hero-content h1 {
+  font-family: 'Playfair Display', serif; /* Use a serif font for prestige */
+  font-size: 4rem;
   margin: 0;
   line-height: 1.1;
-  color: white;
 }
 
-.tagline {
+.hero-tagline {
   font-size: 1.2rem;
-  letter-spacing: 5px; /* Adds the executive "airy" feel */
-  color: var(--gold-accent);
+  color: var(--gold);
+  letter-spacing: 4px;
   text-transform: uppercase;
-  margin-top: 1rem;
+  margin-top: 15px;
   font-weight: 300;
 }
 
-/* 5. Call to Action Button */
-.cta-button {
-  display: inline-block;
-  margin-top: 2.5rem;
-  padding: 15px 35px;
-  background-color: var(--gold-accent);
-  color: var(--executive-navy);
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 2px;
-  transition: transform 0.2s, background-color 0.2s;
+/* Right Side: Boardroom Photo */
+.hero-image {
+  flex: 1.2;
+  background-image: linear-gradient(to right, var(--navy) 0%, transparent 20%), 
+                    url('boardroom.jpeg');
+  background-size: cover;
+  background-position: center;
 }
 
-.cta-button:hover {
-  background-color: #f1c40f;
-  transform: translateY(-2px);
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    height: auto;
+  }
+  .hero-image {
+    height: 300px;
+    flex: none;
+    background-image: url('boardroom.jpeg'); /* Remove gradient on mobile */
+  }
+  .hero-content {
+    padding: 40px 20px;
+    text-align: center;
+    align-items: center;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
 }
