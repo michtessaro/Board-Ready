@@ -1,120 +1,99 @@
+/* 1. Global Styles & Typography */
 :root {
-    --midnight: #0f1b27;
-    --ink: #1a2b3c;
-    --gold: #d4af37; 
-    --off-white: #f2f1ef;
-    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --executive-navy: #0a192f;
+  --gold-accent: #d4af37;
+  --off-white: #fdfcf8;
+  --charcoal: #333333;
 }
 
 body {
-    background-color: var(--midnight);
-    color: var(--off-white);
-    font-family: 'Inter', sans-serif;
-    margin: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif; /* Modern, professional sans-serif */
+  background-color: var(--off-white);
+  color: var(--charcoal);
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+h1, h2 {
+  font-family: 'Playfair Display', serif; /* Elegant serif for headings */
 }
 
-/* Landing Page Buttons */
-.btn-primary {
-    background: var(--gold);
-    color: var(--midnight);
-    padding: 18px 35px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
-    display: inline-block;
-    transition: var(--transition);
+/* 2. Hero Section Container */
+.hero-showcase {
+  position: relative;
+  height: 80vh; /* Takes up 80% of the screen height */
+  display: flex;
+  align-items: center;
+  background-color: var(--executive-navy);
+  overflow: hidden;
 }
 
-.btn-primary:hover {
-    background: #fff;
-    transform: translateY(-3px);
+/* 3. The Boardroom Background Photo */
+.image-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60%; /* Occupies the right side */
+  height: 100%;
 }
 
-/* Directory Grid */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 40px 0;
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Fades the left edge of the photo into the navy background */
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 70%, rgba(0,0,0,0));
 }
 
-/* High-End Card Design */
-.card {
-    background: var(--ink);
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: var(--transition);
-    position: relative;
-    opacity: 1 !important; /* Forces visibility while we test */
+/* 4. Text & Badge Content Overlay */
+.content-overlay {
+  position: relative;
+  z-index: 2;
+  padding-left: 10%;
+  width: 40%;
+  color: white;
 }
 
-.card:hover {
-    border-color: var(--gold);
-    transform: translateY(-5px);
+/* The "Fake" Transparency Fix for the Badge */
+.badge-seal {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%; /* Force the JPEG into a circle */
+  border: 2px solid var(--gold-accent);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Adds depth */
+  margin-bottom: 2rem;
+  object-fit: cover;
 }
 
-.card-image-wrapper {
-    position: relative;
-    aspect-ratio: 1/1;
-    overflow: hidden;
+h1 {
+  font-size: 3.5rem;
+  margin: 0;
+  line-height: 1.1;
+  color: white;
 }
 
-.card-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.tagline {
+  font-size: 1.2rem;
+  letter-spacing: 5px; /* Adds the executive "airy" feel */
+  color: var(--gold-accent);
+  text-transform: uppercase;
+  margin-top: 1rem;
+  font-weight: 300;
 }
 
-.badge-overlay {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 60px;
-    height: 60px;
-    background: url('../../badges/2026-badge.png') no-repeat center center;
-    background-size: contain;
-    z-index: 10;
+/* 5. Call to Action Button */
+.cta-button {
+  display: inline-block;
+  margin-top: 2.5rem;
+  padding: 15px 35px;
+  background-color: var(--gold-accent);
+  color: var(--executive-navy);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 2px;
+  transition: transform 0.2s, background-color 0.2s;
 }
 
-.card-content {
-    padding: 20px;
-    text-align: center;
-}
-
-.nominee-name {
-    color: var(--gold);
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    margin: 10px 0;
-}
-
-.tag {
-    display: inline-block;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 3px 10px;
-    font-size: 0.7rem;
-    border-radius: 20px;
-    margin: 2px;
-}
-
-/* Header UI */
-header {
-    padding: 60px 0;
-    text-align: center;
-    border-bottom: 1px solid rgba(212,175,55,0.1);
-}
-
-#searchInput, #sectorFilter {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(212,175,55,0.3);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 5px;
-    margin: 10px;
+.cta-button:hover {
+  background-color: #f1c40f;
+  transform: translateY(-2px);
 }
