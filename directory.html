@@ -3,67 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showcase | Board Ready</title>
+    <title>The Showcase | 100 Women to Watch</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-    <nav class="nav">
-        <a href="index.html">← Back to Main</a>
-        <img src="badges/2026-badge.png" style="height: 35px;">
-    </nav>
+<body style="background: #f8f9fa;">
 
-    <div class="header-section">
-        <h2>The 2026 Showcase</h2>
-        <div class="search-controls">
-            <input type="text" id="searchInput" onkeyup="runFilters()" placeholder="Search names, titles, or bios...">
-            <select id="tagSelect" onchange="runFilters()">
-                <option value="all">All Specialties</option>
-                <option value="ESG">ESG</option>
-                <option value="Finance">Finance</option>
-                <option value="Technology">Technology</option>
-            </select>
+<nav style="background: var(--navy); padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;">
+    <a href="index.html" style="color: var(--gold); text-decoration: none; font-weight: 600;">← BACK</a>
+    <img src="badges/2026-badge.png" style="height: 40px;">
+</nav>
+
+<div style="text-align: center; padding: 60px 5%; background: white;">
+    <h2 style="font-family: 'Playfair Display'; font-size: 3rem; color: var(--navy);">The 2026 Showcase</h2>
+</div>
+
+<div class="grid">
+    <div class="card">
+        <div style="height: 400px; overflow: hidden;">
+            <img src="assets/images/Lauren.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="padding: 25px;">
+            <h3 style="font-family: 'Playfair Display'; margin: 0; font-size: 1.8rem; color: var(--navy);">Lauren D'Souza</h3>
+            <p style="color: var(--gold); font-weight: 600; text-transform: uppercase; margin: 10px 0;">Chief Operating Officer</p>
+            <details style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px;">
+                <summary style="cursor: pointer; font-weight: 600; font-size: 0.8rem; color: var(--navy);">VIEW BIOGRAPHY</summary>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: #555; padding-top: 10px;">
+                    Strategic leader specializing in global operations and AI governance.
+                </p>
+            </details>
         </div>
     </div>
+</div>
 
-    <div id="noResults" style="display:none; text-align:center; padding:50px;">No candidates match your search.</div>
-
-    <div class="grid" id="nomineeGrid">
-        <div class="card nominee-card" data-tags="ESG Technology">
-            <div class="img-container">
-                <img src="badges/2026-badge.png" class="card-badge">
-                <img src="assets/images/Lauren.jpg" class="photo" alt="Lauren">
-            </div>
-            <div class="details">
-                <h3>Lauren D’Souza</h3>
-                <span class="title-line">Chief Operating Officer</span>
-                <div class="company-line">Global Tech Solutions PLC</div>
-                <div class="bio-container">
-                    <details>
-                        <summary>Executive Biography</summary>
-                        <div class="bio-text">Expert in scaling AI and ESG operations across global markets.</div>
-                    </details>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function runFilters() {
-            let searchText = document.getElementById('searchInput').value.toLowerCase();
-            let selectedTag = document.getElementById('tagSelect').value;
-            let cards = document.getElementsByClassName('nominee-card');
-            let visibleCount = 0;
-            for (let card of cards) {
-                let text = card.innerText.toLowerCase();
-                let tags = card.getAttribute('data-tags');
-                let matchesSearch = text.includes(searchText);
-                let matchesTag = (selectedTag === 'all' || tags.includes(selectedTag));
-                if (matchesSearch && matchesTag) { card.style.display = "block"; visibleCount++; }
-                else { card.style.display = "none"; }
-            }
-            document.getElementById('noResults').style.display = (visibleCount === 0) ? "block" : "none";
-        }
-    </script>
 </body>
 </html>
