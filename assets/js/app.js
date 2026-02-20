@@ -1,47 +1,55 @@
-async function loadNominees() {
-    const response = await fetch('./data/2026-list.json');
-    const nominees = await response.json();
-    
-    const grid = document.getElementById('nomineeGrid');
-    const searchInput = document.getElementById('searchInput');
-    const sectorFilter = document.getElementById('sectorFilter');
+async function loadDirectory() {
+    try {
+        const response = await fetch('data/2026-list.json');
+        const nominees = await response.json();
+        const grid = document.getElementById('nomineeGrid');
+        
+        displayNominees(nominees);
 
-    function displayNominees(list) {
-        grid.innerHTML = list.map(n => `
-            <div class="card">
-                <div class="photo-container">
-                    <img src="${n.photo}" alt="${n.name}">
-                    <div class="badge-overlay"></div>
-                </div>
-                <div class="info">
-                    <h3>${n.name}</h3>
-                    <p><strong>${n.role}</strong></p>
-                    <p>${n.company}</p>
-                    <div class="expertise">
-                        ${n.expertise.map(e => `<span class="tag">${e}</span>`).join('')}
-                    </div>
-                </div>
-            </div>
-        `).join('');
+        // Animation Logic: Fade in cards as they appear on screen
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+    } catch (error) {
+        console.error("Error loading directory:", error);
     }
-
-    function filterData() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const sector = sectorFilter.value;
-
-        const filtered = nominees.filter(n => {
-            const matchesSearch = n.name.toLowerCase().includes(searchTerm) || 
-                                n.expertise.some(e => e.toLowerCase().includes(searchTerm));
-            const matchesSector = sector === "" || n.sector === sector;
-            return matchesSearch && matchesSector;
-        });
-        displayNominees(filtered);
-    }
-
-    searchInput.addEventListener('input', filterData);
-    sectorFilter.addEventListener('change', filterData);
-
-    displayNominees(nominees);
 }
 
-loadNominees();
+function displayNominees(list) {
+    const grid = document.getElementById('nomineeGrid');
+    grid.innerHTML = list.map(person => `
+        <div class="card">
+            <div class="card-image-wrapper">
+                <div class="badge-overlay"></div>
+                <img src="${person.photo}" alt="${person.name}">
+            </div>
+            <div class="card-content">
+                <h3 class="nominee-name">${person.name}</h3>
+                <p class="nominee-role">${person.role} • ${person.company}</p>
+                <div class="expertise-tags">
+                    ${person.expertise.map(skill => `<span class="tag">${skill}</span>`).join('')}
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Search Functionality
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(term) ? "block" : "none";
+    });
+});
+
+window.onload = loadDirectory;
