@@ -1,48 +1,21 @@
-/* --- GLOBAL VARIABLES --- */
 :root {
     --navy: #0a192f;
     --gold: #d4af37;
     --white: #ffffff;
     --off-white: #f8f9fa;
-    --text-gray: #555;
-    --shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-/* --- BASE STYLES --- */
 body, html {
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     font-family: 'Montserrat', sans-serif;
     background-color: var(--off-white);
-    scroll-behavior: smooth;
-    color: #333;
 }
 
-/* --- NAVIGATION --- */
-.nav {
-    background: var(--navy);
-    padding: 15px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav a {
-    color: var(--gold);
-    text-decoration: none;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
-
-/* --- LANDING PAGE (INDEX) STYLES --- */
+/* Landing Page Layout */
 .hero-container {
     display: flex;
     height: 100vh;
     background-color: var(--navy);
-    color: var(--white);
-    overflow: hidden;
 }
 
 .hero-content {
@@ -50,260 +23,72 @@ body, html {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 6%;
-    z-index: 2;
+    padding: 0 8%;
+    color: white;
 }
 
-/* Fixed Badge Proportion & Alignment */
 .hero-badge {
-    width: 140px; /* Controlled size so it doesn't overpower the headline */
+    width: 140px;
     height: auto;
-    margin-bottom: 25px;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-    align-self: flex-start; /* Aligns with the text flow */
+    margin-bottom: 20px;
 }
 
 .hero-content h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin: 0;
-    line-height: 1.1;
 }
 
 .hero-tagline {
-    font-size: 1.1rem;
     color: var(--gold);
-    letter-spacing: 5px;
     text-transform: uppercase;
-    margin-top: 20px;
-    font-weight: 300;
+    letter-spacing: 3px;
+    margin: 20px 0;
 }
 
 .hero-image {
-    flex: 1.3;
-    background-image: linear-gradient(to right, var(--navy) 0%, transparent 25%), 
-                      url('boardroom.jpeg');
+    flex: 1.2;
+    /* Jumps up two levels to find boardroom in root */
+    background-image: linear-gradient(to right, var(--navy) 0%, transparent 20%), 
+                      url('../../boardroom.jpeg');
     background-size: cover;
     background-position: center;
 }
 
 .cta-button {
-    margin-top: 40px;
-    padding: 18px 35px;
+    padding: 15px 30px;
     border: 1px solid var(--gold);
     color: var(--gold);
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
     font-weight: 600;
     width: fit-content;
     transition: 0.3s;
 }
 
-.cta-button:hover {
-    background-color: var(--gold);
-    color: var(--navy);
-}
+.cta-button:hover { background: var(--gold); color: var(--navy); }
 
-/* --- DIRECTORY HEADER & SEARCH --- */
-.header-section {
-    padding: 40px 5%;
-    text-align: center;
-    background: white;
-    border-bottom: 1px solid #eee;
-}
+/* Directory Styles */
+.nav { background: var(--navy); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
+.nav a { color: var(--gold); text-decoration: none; font-size: 0.8rem; }
 
-.header-section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--navy);
-    margin-bottom: 25px;
-}
+.header-section { padding: 40px 5%; text-align: center; background: white; }
+.search-controls { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
+#searchInput, #tagSelect { padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
 
-.search-controls {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-
-#searchInput {
-    flex: 2;
-    padding: 12px 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-family: 'Montserrat';
-    outline: none;
-    font-size: 1rem;
-}
-
-#tagSelect {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid var(--navy);
-    background: white;
-    color: var(--navy);
-    font-weight: 600;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Montserrat';
-}
-
-/* --- STABLE GRID (PREVENTS JUMBO PHOTOS) --- */
 .grid {
     display: grid;
-    /* auto-fill + minmax ensures cards stay in their track and don't expand to fill the screen */
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 30px;
-    padding: 50px 5% 100px;
-    max-width: 1400px;
-    margin: 0 auto;
+    padding: 50px 5%;
 }
 
-.card {
-    background: white;
-    position: relative;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
-    height: fit-content; /* Important so cards don't stretch vertically */
-    display: flex;
-    flex-direction: column;
-}
+.card { background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.img-container { height: 400px; overflow: hidden; position: relative; }
+.img-container img.photo { width: 100%; height: 100%; object-fit: cover; }
+.card-badge { position: absolute; top: 10px; right: 10px; width: 60px; }
+.details { padding: 20px; border-bottom: 4px solid var(--gold); }
 
-.card:hover { transform: translateY(-5px); }
-
-.img-container {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-}
-
-.img-container img.photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Small Badge Overlay on Cards */
-.card-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 70px;
-    z-index: 10;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-}
-
-.details {
-    padding: 25px;
-    border-bottom: 5px solid var(--gold);
-    flex-grow: 1;
-}
-
-.details h3 {
-    font-family: 'Playfair Display', serif;
-    margin: 0;
-    font-size: 1.5rem;
-    color: var(--navy);
-}
-
-.title-line {
-    color: var(--gold);
-    font-weight: 600;
-    font-size: 0.85rem;
-    margin: 8px 0 4px 0;
-    display: block;
-    text-transform: uppercase;
-}
-
-.company-line {
-    color: var(--text-gray);
-    font-size: 0.95rem;
-    margin-bottom: 15px;
-}
-
-/* --- EXPANDABLE BIO --- */
-.bio-container {
-    margin-top: 15px;
-    border-top: 1px solid #eee;
-    padding-top: 12px;
-}
-
-details summary {
-    list-style: none;
-    cursor: pointer;
-    color: var(--navy);
-    font-weight: 600;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    outline: none;
-}
-
-details summary::-webkit-details-marker { display: none; }
-
-details summary::after { 
-    content: '+'; 
-    color: var(--gold); 
-    font-size: 1.2rem;
-    font-weight: 400;
-}
-
-details[open] summary::after { content: '−'; }
-
-.bio-text {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: #555;
-    padding-top: 12px;
-}
-
-/* --- TAGS --- */
-.tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 15px;
-}
-
-.tag-pill {
-    background: #f0f0f0;
-    color: #444;
-    padding: 4px 10px;
-    font-size: 0.65rem;
-    border-radius: 3px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-/* --- NO RESULTS MESSAGE --- */
-#noResults {
-    display: none;
-    text-align: center;
-    padding: 100px 5%;
-    font-size: 1.2rem;
-    color: var(--navy);
-}
-
-/* --- RESPONSIVE FIXES --- */
-@media (max-width: 992px) {
-    .hero-container { flex-direction: column-reverse; height: auto; }
-    .hero-image { height: 400px; }
-    .hero-content { padding: 60px 30px; text-align: center; align-items: center; }
-    .hero-badge { align-self: center; }
-    .hero-content h1 { font-size: 3rem; }
-}
-
-@media (max-width: 600px) {
-    .search-controls { flex-direction: column; }
-    .grid { 
-        grid-template-columns: 1fr; /* Stack on small mobile screens */
-        padding: 20px 5%;
-    }
-    .img-container { height: 350px; }
-}
+.bio-container { margin-top: 10px; border-top: 1px solid #eee; padding-top: 10px; }
+details summary { cursor: pointer; color: var(--navy); font-weight: 600; font-size: 0.8rem; }
+.bio-text { font-size: 0.85rem; padding-top: 10px; color: #555; }
