@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS Variables for Brand Colors */
         :root {
             --navy: #0a192f;
             --gold: #d4af37;
@@ -24,7 +23,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Hero Section Styling */
+        /* Full Screen Hero Container */
         .hero-container {
             display: flex;
             height: 100vh;
@@ -34,7 +33,7 @@
             position: relative;
         }
 
-        /* Left Content Area */
+        /* Left Side Text Content */
         .hero-content {
             flex: 1;
             display: flex;
@@ -45,8 +44,10 @@
             background: var(--navy);
         }
 
+        /* The Badge Image */
         .hero-badge {
-            width: 150px; /* Adjust based on your preference */
+            width: 150px; 
+            height: auto;
             margin-bottom: 30px;
             display: block;
         }
@@ -68,17 +69,17 @@
             font-weight: 300;
         }
 
-        /* Right Side: Boardroom Photo */
+        /* Right Side Background Image */
         .hero-image {
             flex: 1.3;
+            /* Linear gradient creates a smooth fade from the Navy background into the photo */
             background-image: linear-gradient(to right, var(--navy) 0%, transparent 25%), 
                               url('boardroom.jpeg');
             background-size: cover;
             background-position: center;
-            position: relative;
         }
 
-        /* Call to Action Button */
+        /* Interactive CTA Button */
         .cta-button {
             margin-top: 40px;
             padding: 15px 35px;
@@ -98,25 +99,12 @@
             color: var(--navy);
         }
 
-        /* Responsive Design for Mobile */
+        /* Mobile Adjustments */
         @media (max-width: 992px) {
-            .hero-container {
-                flex-direction: column-reverse;
-                height: auto;
-            }
-            .hero-image {
-                height: 400px;
-                flex: none;
-                background-image: url('boardroom.jpeg'); /* Removes navy gradient on mobile */
-            }
-            .hero-content {
-                padding: 60px 30px;
-                text-align: center;
-                align-items: center;
-            }
-            .hero-content h1 {
-                font-size: 3rem;
-            }
+            .hero-container { flex-direction: column-reverse; height: auto; }
+            .hero-image { height: 400px; flex: none; background-image: url('boardroom.jpeg'); }
+            .hero-content { padding: 60px 30px; text-align: center; align-items: center; }
+            .hero-content h1 { font-size: 3rem; }
         }
     </style>
 </head>
@@ -124,23 +112,26 @@
 
     <section class="hero-container">
         <div class="hero-content">
-            <img src="2026-badge.jpg" alt="Board Ready 2026 Badge" class="hero-badge">
+            <img src="2026-badge.png" alt="Board Ready 2026" class="hero-badge">
             
             <h1>100 Women <br>to Watch</h1>
             <p class="hero-tagline">Strategic. Experienced. Ready.</p>
             
-            <a href="#showcase" class="cta-button">Enter the Showcase</a>
+            <a href="#directory-section" class="cta-button">Enter the Showcase</a>
         </div>
 
         <div class="hero-image"></div>
     </section>
 
-    <section id="showcase" style="padding: 100px 50px; text-align: center;">
+    <section id="directory-section" style="padding: 100px 50px; text-align: center;">
         <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--navy);">The Showcase</h2>
-        <p style="max-width: 600px; margin: 20px auto; line-height: 1.6;">
-            A curated directory of exceptional female talent prepared for FTSE 350 board positions. 
-            Connect with leaders who bring expertise, integrity, and strategic vision to the boardroom.
+        <p style="max-width: 600px; margin: 20px auto; line-height: 1.6; color: #555;">
+            A curated directory of exceptional female talent prepared for FTSE 350 board positions.
         </p>
+        
+        <div style="margin-top: 50px; color: #999; border: 1px dashed #ccc; padding: 100px;">
+            <p>Showcase Profile Cards will be placed here.</p>
+        </div>
     </section>
 
 </body>
