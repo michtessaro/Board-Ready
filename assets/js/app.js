@@ -2,11 +2,10 @@ async function loadDirectory() {
     try {
         const response = await fetch('data/2026-list.json');
         const nominees = await response.json();
-        const grid = document.getElementById('nomineeGrid');
         
         displayNominees(nominees);
 
-        // Animation Logic: Fade in cards as they appear on screen
+        // Animation: Fade in cards on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -25,10 +24,10 @@ async function loadDirectory() {
 function displayNominees(list) {
     const grid = document.getElementById('nomineeGrid');
     grid.innerHTML = list.map(person => `
-        <div class="card">
+        <div class="card" data-sector="${person.sector}">
             <div class="card-image-wrapper">
                 <div class="badge-overlay"></div>
-                <img src="${person.photo}" alt="${person.name}">
+                <img src="${person.photo}" alt="${person.name}" loading="lazy">
             </div>
             <div class="card-content">
                 <h3 class="nominee-name">${person.name}</h3>
@@ -41,15 +40,29 @@ function displayNominees(list) {
     `).join('');
 }
 
-// Search Functionality
-document.getElementById('searchInput').addEventListener('input', (e) => {
-    const term = e.target.value.toLowerCase();
+// Multi-Filter Logic (Search + Dropdown)
+function filterCandidates() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const selectedSector = document.getElementById('sectorFilter').value;
     const cards = document.querySelectorAll('.card');
-    
+
     cards.forEach(card => {
         const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(term) ? "block" : "none";
+        const sector = card.getAttribute('data-sector');
+        
+        const matchesSearch = text.includes(searchTerm);
+        const matchesSector = selectedSector === "" || sector === selectedSector;
+
+        if (matchesSearch && matchesSector) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
     });
-});
+}
+
+// Event Listeners for Filters
+document.getElementById('searchInput').addEventListener('input', filterCandidates);
+document.getElementById('sectorFilter').addEventListener('change', filterCandidates);
 
 window.onload = loadDirectory;
