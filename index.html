@@ -4,172 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100 Women to Watch | Board Ready</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --navy: #0a192f;
-            --gold: #d4af37;
-            --white: #ffffff;
-            --off-white: #f8f9fa;
-            --text-gray: #555;
-        }
-
-        body, html {
-            margin: 0; padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--off-white);
-            scroll-behavior: smooth;
-        }
-
-        /* Hero Section */
-        .hero-container {
-            display: flex;
-            height: 100vh;
-            background-color: var(--navy);
-            color: var(--white);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .hero-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 6%;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            width: 150px; 
-            height: auto;
-            margin-bottom: 30px;
-        }
-
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
-            margin: 0;
-            line-height: 1.1;
-        }
-
-        .hero-tagline {
-            font-size: 1.1rem;
-            color: var(--gold);
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-top: 20px;
-            font-weight: 300;
-        }
-
-        .hero-image {
-            flex: 1.3;
-            background-image: linear-gradient(to right, var(--navy) 0%, transparent 25%), 
-                              url('boardroom.jpeg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .cta-button {
-            margin-top: 40px;
-            padding: 15px 35px;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            width: fit-content;
-            transition: 0.3s;
-        }
-
-        .cta-button:hover { background-color: var(--gold); color: var(--navy); }
-
-        /* Showcase Section */
-        #directory-section { padding: 100px 8%; text-align: center; }
+        :root { --navy: #0a192f; --gold: #d4af37; --white: #ffffff; --off-white: #f8f9fa; }
+        body, html { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background-color: var(--off-white); scroll-behavior: smooth; }
+        .hero-container { display: flex; height: 100vh; background-color: var(--navy); color: var(--white); overflow: hidden; position: relative; }
+        .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 6%; z-index: 2; background: var(--navy); }
+        .hero-badge { width: 150px; height: auto; margin-bottom: 30px; }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; margin: 0; line-height: 1.1; }
+        .hero-tagline { font-size: 1.1rem; color: var(--gold); letter-spacing: 5px; text-transform: uppercase; margin-top: 20px; font-weight: 300; }
         
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--navy);
-            margin-bottom: 10px;
+        .hero-image { 
+            flex: 1.3; 
+            background-image: linear-gradient(to right, var(--navy) 0%, transparent 25%), 
+                              url('boardroom.jpeg'); 
+            background-size: cover; 
+            background-position: center; 
         }
-
-        .section-subtitle {
-            max-width: 700px;
-            margin: 0 auto 60px;
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        /* Nominee Grid */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .profile-card {
-            background: white;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            transition: 0.4s ease;
-            text-align: left;
-            border-bottom: 5px solid var(--gold);
-        }
-
-        .profile-card:hover { transform: translateY(-10px); }
-
-        .image-wrapper {
-            width: 100%;
-            height: 450px;
-            overflow: hidden;
-            background-color: #eee;
-        }
-
-        .image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
+        
+        .cta-button { margin-top: 40px; padding: 15px 35px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; font-weight: 600; width: fit-content; transition: 0.3s; }
+        .cta-button:hover { background-color: var(--gold); color: var(--navy); }
+        #directory-section { padding: 100px 8%; text-align: center; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 50px; max-width: 1200px; margin: 0 auto; }
+        .profile-card { background: white; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05); transition: 0.4s ease; text-align: left; border-bottom: 5px solid var(--gold); }
+        .image-wrapper { width: 100%; height: 450px; overflow: hidden; background-color: #eee; }
+        .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
         .profile-info { padding: 30px; }
-
-        .profile-info h3 { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.8rem; 
-            margin: 0 0 5px 0;
-            color: var(--navy);
-        }
-
-        .profile-role { 
-            color: var(--gold); 
-            font-weight: 600; 
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px; 
-        }
-
-        @media (max-width: 992px) {
-            .hero-container { flex-direction: column-reverse; height: auto; }
-            .hero-image { height: 400px; flex: none; }
-            .hero-content { padding: 60px 30px; text-align: center; align-items: center; }
-            .hero-content h1 { font-size: 3rem; }
-            .grid-container { grid-template-columns: 1fr; }
-        }
+        .profile-info h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 0 0 5px 0; color: var(--navy); }
+        .profile-role { color: var(--gold); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1.5px; margin-bottom: 15px; }
+        @media (max-width: 992px) { .hero-container { flex-direction: column-reverse; height: auto; } .hero-image { height: 400px; flex: none; } .hero-content { padding: 60px 30px; text-align: center; align-items: center; } .hero-content h1 { font-size: 3rem; } .grid-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
     <section class="hero-container">
         <div class="hero-content">
-            <img src="2026-badge.png" alt="Board Ready 2026" class="hero-badge">
+            <img src="badges/2026-badge.png" alt="Board Ready 2026" class="hero-badge">
             <h1>100 Women <br>to Watch</h1>
             <p class="hero-tagline">Strategic. Experienced. Ready.</p>
             <a href="#directory-section" class="cta-button">Enter the Showcase</a>
@@ -178,33 +48,30 @@
     </section>
 
     <section id="directory-section">
-        <h2 class="section-title">The Showcase</h2>
-        <p class="section-subtitle">Meet our featured boardroom-ready nominees.</p>
-        
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--navy);">The Showcase</h2>
+        <p style="color: #555; margin-bottom: 60px;">Meet our featured boardroom-ready nominees.</p>
         <div class="grid-container">
             <div class="profile-card">
                 <div class="image-wrapper">
-                    <img src="Lauren.jpg" alt="Lauren">
+                    <img src="images/Lauren.jpg" alt="Lauren">
                 </div>
                 <div class="profile-info">
                     <p class="profile-role">Featured Nominee</p>
                     <h3>Lauren</h3>
-                    <p>Executive leader with extensive experience in strategic planning and board-level governance.</p>
+                    <p>Strategic leader with a focus on board-level governance.</p>
                 </div>
             </div>
-
             <div class="profile-card">
                 <div class="image-wrapper">
-                    <img src="Alex.jpg" alt="Alex">
+                    <img src="images/Alex.jpg" alt="Alex">
                 </div>
                 <div class="profile-info">
                     <p class="profile-role">Featured Nominee</p>
                     <h3>Alex</h3>
-                    <p>Accomplished professional specializing in financial oversight and operational excellence.</p>
+                    <p>Accomplished professional specializing in financial oversight.</p>
                 </div>
             </div>
         </div>
     </section>
-
 </body>
 </html>
