@@ -3,33 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100 Women to Watch</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>100 Women to Watch | Board Ready</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
-        /* This ensures visibility even if the main CSS fails */
-        body.landing-page {
-            background-color: #0f1b27 !important;
+        /* CSS Variables for Brand Colors */
+        :root {
+            --navy: #0a192f;
+            --gold: #d4af37;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--off-white);
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section Styling */
+        .hero-container {
+            display: flex;
+            height: 100vh;
+            background-color: var(--navy);
+            color: var(--white);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Left Content Area */
+        .hero-content {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            color: white;
+            padding: 0 6%;
+            z-index: 2;
+            background: var(--navy);
         }
-        .hero h1 { color: #d4af37; font-family: 'Playfair Display', serif; font-size: 3rem; }
+
+        .hero-badge {
+            width: 150px; /* Adjust based on your preference */
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            margin: 0;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            font-weight: 300;
+        }
+
+        /* Right Side: Boardroom Photo */
+        .hero-image {
+            flex: 1.3;
+            background-image: linear-gradient(to right, var(--navy) 0%, transparent 25%), 
+                              url('boardroom.jpeg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Call to Action Button */
+        .cta-button {
+            margin-top: 40px;
+            padding: 15px 35px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            width: fit-content;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 992px) {
+            .hero-container {
+                flex-direction: column-reverse;
+                height: auto;
+            }
+            .hero-image {
+                height: 400px;
+                flex: none;
+                background-image: url('boardroom.jpeg'); /* Removes navy gradient on mobile */
+            }
+            .hero-content {
+                padding: 60px 30px;
+                text-align: center;
+                align-items: center;
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
     </style>
 </head>
-<body class="landing-page">
-    <div class="hero">
-        <img src="badges/2026-badge.png" alt="Logo" style="width: 150px; margin-bottom: 20px;">
-        <h1>100 Women to Watch</h1>
-        <p>The Definitive Guide to Board-Ready Female Talent</p>
-        <br>
-        <a href="directory.html" style="background:#d4af37; color:#0f1b27; padding: 15px 30px; text-decoration:none; font-weight:bold; border-radius:5px;">
-            View the 2026 Directory
-        </a>
-    </div>
+<body>
+
+    <section class="hero-container">
+        <div class="hero-content">
+            <img src="2026-badge.jpg" alt="Board Ready 2026 Badge" class="hero-badge">
+            
+            <h1>100 Women <br>to Watch</h1>
+            <p class="hero-tagline">Strategic. Experienced. Ready.</p>
+            
+            <a href="#showcase" class="cta-button">Enter the Showcase</a>
+        </div>
+
+        <div class="hero-image"></div>
+    </section>
+
+    <section id="showcase" style="padding: 100px 50px; text-align: center;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--navy);">The Showcase</h2>
+        <p style="max-width: 600px; margin: 20px auto; line-height: 1.6;">
+            A curated directory of exceptional female talent prepared for FTSE 350 board positions. 
+            Connect with leaders who bring expertise, integrity, and strategic vision to the boardroom.
+        </p>
+    </section>
+
 </body>
 </html>
