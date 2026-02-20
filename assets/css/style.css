@@ -1,149 +1,120 @@
 :root {
     --midnight: #0f1b27;
     --ink: #1a2b3c;
-    --gold: #d9c4a9; /* Champagne Gold */
+    --gold: #d4af37; 
     --off-white: #f2f1ef;
-    --glass: rgba(255, 255, 255, 0.03);
     --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 body {
     background-color: var(--midnight);
     color: var(--off-white);
-    font-family: 'Inter', sans-serif; /* Clean Sans */
+    font-family: 'Inter', sans-serif;
     margin: 0;
-    line-height: 1.6;
 }
 
-h1, h2, .nominee-name {
-    font-family: 'Playfair Display', serif; /* Authority Serif */
-    letter-spacing: 1px;
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* Luxury Header */
-header {
-    padding: 80px 20px;
-    background: radial-gradient(circle at center, #1a2b3c 0%, #0f1b27 100%);
-    text-align: center;
-    border-bottom: 1px solid rgba(217, 196, 169, 0.1);
-}
-
-.search-container {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-#searchInput {
-    background: var(--glass);
-    border: 1px solid rgba(217, 196, 169, 0.3);
-    color: white;
-    padding: 18px 30px;
-    border-radius: 40px;
-    width: 400px;
-    backdrop-filter: blur(10px);
+/* Landing Page Buttons */
+.btn-primary {
+    background: var(--gold);
+    color: var(--midnight);
+    padding: 18px 35px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    display: inline-block;
     transition: var(--transition);
 }
 
-#searchInput:focus {
-    outline: none;
-    border-color: var(--gold);
-    box-shadow: 0 0 20px rgba(217, 196, 169, 0.1);
+.btn-primary:hover {
+    background: #fff;
+    transform: translateY(-3px);
 }
 
-/* The Editorial Card */
+/* Directory Grid */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 50px;
-    padding: 80px 0;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 0;
 }
 
+/* High-End Card Design */
 .card {
     background: var(--ink);
-    border-radius: 0px; /* Sharp, high-fashion edges */
-    overflow: hidden;
-    position: relative;
-    transition: var(--transition);
     border: 1px solid rgba(255,255,255,0.05);
-    opacity: 0; /* Managed by JS animation */
-    transform: translateY(20px);
-}
-
-.card.visible {
-    opacity: 1;
-    transform: translateY(0);
+    transition: var(--transition);
+    position: relative;
+    opacity: 1 !important; /* Forces visibility while we test */
 }
 
 .card:hover {
-    transform: translateY(-10px);
     border-color: var(--gold);
+    transform: translateY(-5px);
 }
 
 .card-image-wrapper {
     position: relative;
+    aspect-ratio: 1/1;
     overflow: hidden;
-    aspect-ratio: 4/5;
 }
 
 .card-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(20%); /* Editorial muted tone */
-    transition: var(--transition);
 }
 
-.card:hover img {
-    filter: grayscale(0%);
-    scale: 1.05;
-}
-
-/* The "Wax Seal" Badge */
 .badge-overlay {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
     background: url('../../badges/2026-badge.png') no-repeat center center;
     background-size: contain;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
     z-index: 10;
-    pointer-events: none;
 }
 
 .card-content {
-    padding: 30px;
+    padding: 20px;
     text-align: center;
 }
 
 .nominee-name {
-    font-size: 1.6rem;
     color: var(--gold);
-    margin: 0 0 10px 0;
-}
-
-.nominee-role {
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    color: #888;
-    margin-bottom: 20px;
-}
-
-.expertise-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin: 10px 0;
 }
 
 .tag {
-    font-size: 0.65rem;
-    padding: 5px 12px;
-    border: 1px solid rgba(217, 196, 169, 0.2);
-    border-radius: 20px;
+    display: inline-block;
+    border: 1px solid var(--gold);
     color: var(--gold);
+    padding: 3px 10px;
+    font-size: 0.7rem;
+    border-radius: 20px;
+    margin: 2px;
+}
+
+/* Header UI */
+header {
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,175,55,0.1);
+}
+
+#searchInput, #sectorFilter {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(212,175,55,0.3);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    margin: 10px;
 }
